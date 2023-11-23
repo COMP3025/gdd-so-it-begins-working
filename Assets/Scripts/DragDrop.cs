@@ -13,18 +13,25 @@ Cheers!
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
+public enum Status
+{
+    Bucket,
+    Slot,
+    Spawn,
+}
+
+public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
     [SerializeField] private Canvas canvas;
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
-    private Vector2 initialPosition;
-    public static bool onSlot;
-    public string status = "spawn";
-
+    public Vector2 initialPosition;
+    public bool onSlot;
+    public Status status = Status.Bucket;
     public ItemOn itemSlot;
 
     private void Awake()
@@ -37,7 +44,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log("OnBeginDrag");
+        //Debug.Log("OnBeginDrag");
         canvasGroup.alpha = .6f;
         canvasGroup.blocksRaycasts = false;
     }
@@ -50,7 +57,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log("OnEndDrag");
+        //Debug.Log("OnEndDrag");
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
 
@@ -66,31 +73,29 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         onSlot = false;
     }
 
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        Debug.Log("OnPointerDown");
-    }
 
-    public void ModificarEstadoDoObjeto(string novoEstado, ItemOn item)
-    {
-        status = novoEstado;
-        if (itemSlot != null)
-        {
-            itemSlot.itemOnSlot = null;
-        }
-
-        itemSlot = item;
-    }
-
-    public void ModificarEstadoDoObjeto(string novoEstado)
+    public void ModificarEstadoDoObjeto(Status novoEstado)
     {
         status = novoEstado;
     }
 
-
-    public string ObterStatus()
+    public Status ObterStatus()
     {
         return status;
     }
 
+    public void MoveDropDown(ItemOn item, Status[] validStatus, Status goTo)
+    {
+        if (validStatus.ToList().Contains(status))
+        {
+            GetComponent<RectTransform>().anchoredPosition = item.GetComponent<RectTransform>().anchoredPosition;
+
+            itemSlot.itemOnSlot = null;
+            itemSlot = item;
+            itemSlot.itemOnSlot = this;
+
+            onSlot = true;
+            status = goTo;
+        }
+    }
 }

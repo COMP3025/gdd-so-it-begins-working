@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ItemOn : MonoBehaviour
 {
-    public GameObject itemOnSlot;
+    public DragDrop itemOnSlot;
 
     // Start is called before the first frame update
     void Start()
