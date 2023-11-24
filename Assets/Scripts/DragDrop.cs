@@ -105,7 +105,10 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
         {
             GetComponent<RectTransform>().anchoredPosition = item.GetComponent<RectTransform>().anchoredPosition;
 
-            itemSlot.itemOnSlot = null;
+            if (itemSlot != null)
+            {
+                itemSlot.itemOnSlot = null;
+            }
             itemSlot = item;
             itemSlot.itemOnSlot = this;
 
