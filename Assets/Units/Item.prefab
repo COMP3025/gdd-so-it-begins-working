@@ -90,8 +90,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 1573713206397908056, guid: 064cf46ba6b76eb4ea62b2e7db6553f7, type: 3}
-  status: bucket
+  initialPosition: {x: 0, y: 0}
+  onSlot: 0
+  status: 0
   itemSlot: {fileID: 0}
+  target: {fileID: 583076471069433869, guid: 4c1774f5035c43b4887824e6fd98dfd6, type: 3}
+  targetVida: {fileID: 4117391326553536784, guid: e4bde3938550c6948b8d0412487f3777, type: 3}
 --- !u!225 &4613305936497723716
 CanvasGroup:
   m_ObjectHideFlags: 0

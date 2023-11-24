@@ -33,6 +33,21 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
     public bool onSlot;
     public Status status = Status.Bucket;
     public ItemOn itemSlot;
+    public GameObject target;
+    public GameObject targetVida;
+
+    private void Start()
+    {
+        GameObject newInstantiateAtaque = Instantiate(target, transform.position, transform.rotation);
+
+        newInstantiateAtaque.transform.SetParent(rectTransform.GetComponent<Transform>());
+        newInstantiateAtaque.transform.localScale = new Vector2(1, 1);
+
+        GameObject newInstantiateVida = Instantiate(targetVida, transform.position, transform.rotation);
+
+        newInstantiateVida.transform.SetParent(rectTransform.GetComponent<Transform>());
+        newInstantiateVida.transform.localScale = new Vector2(1, 1);
+    }
 
     private void Awake()
     {
