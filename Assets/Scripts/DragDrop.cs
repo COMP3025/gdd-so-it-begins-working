@@ -14,6 +14,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -36,17 +37,22 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
     public GameObject target;
     public GameObject targetVida;
 
+    public int ataque;
+    public int vida;
+
     private void Start()
     {
         GameObject newInstantiateAtaque = Instantiate(target, transform.position, transform.rotation);
-
         newInstantiateAtaque.transform.SetParent(rectTransform.GetComponent<Transform>());
         newInstantiateAtaque.transform.localScale = new Vector2(1, 1);
+        TextMeshProUGUI textMeshAtaque = newInstantiateAtaque.GetComponent<TextMeshProUGUI>();
+        textMeshAtaque.text = ataque.ToString();
 
         GameObject newInstantiateVida = Instantiate(targetVida, transform.position, transform.rotation);
-
         newInstantiateVida.transform.SetParent(rectTransform.GetComponent<Transform>());
         newInstantiateVida.transform.localScale = new Vector2(1, 1);
+        TextMeshProUGUI textMeshVida = newInstantiateVida.GetComponent<TextMeshProUGUI>();
+        textMeshVida.text = vida.ToString();
     }
 
     private void Awake()
