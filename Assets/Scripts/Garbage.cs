@@ -47,8 +47,9 @@ public class Garbage : MonoBehaviour, IDropHandler
                     eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = bucket.GetComponent<RectTransform>().anchoredPosition;
                     dragDropInstance.ModificarEstadoDoObjeto(Status.Bucket);
                     dragDropInstance.onSlot = true;
-                    Bucket currentBucket = bucket.GetComponent<Bucket>();
+                    dragDropInstance.itemSlot.itemOnSlot = null;
 
+                    Bucket currentBucket = bucket.GetComponent<Bucket>();
                     currentBucket.itensOnBucket.Add(dragDropInstance);
                 }
             }
