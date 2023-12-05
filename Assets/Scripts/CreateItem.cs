@@ -25,7 +25,11 @@ public class CreateItem : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            GameObject newInstantiate = Instantiate(target, transform.position, transform.rotation);
+            Transform parentTransform = GameObject.FindGameObjectWithTag("HierarchyItens").transform;
+
+            GameObject newInstantiate = Instantiate(target, Vector2.zero, Quaternion.identity);
+
+            newInstantiate.transform.SetParent(parentTransform);
             newInstantiate.transform.localScale = new Vector2(1, 1); // change its local scale in x y z format
         }
     }
