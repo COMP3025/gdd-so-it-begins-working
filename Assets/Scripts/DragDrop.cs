@@ -14,6 +14,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -36,17 +37,27 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
     public GameObject target;
     public GameObject targetVida;
 
+    public int ataque;
+    public int vida;
+    public int CurrentVida;
+
+    private TextMeshProUGUI textMeshAtaque;
+    private TextMeshProUGUI textMeshVida;
+
     private void Start()
     {
         GameObject newInstantiateAtaque = Instantiate(target, transform.position, transform.rotation);
-
         newInstantiateAtaque.transform.SetParent(rectTransform.GetComponent<Transform>());
         newInstantiateAtaque.transform.localScale = new Vector2(1, 1);
+        textMeshAtaque = newInstantiateAtaque.GetComponent<TextMeshProUGUI>();
+        textMeshAtaque.text = ataque.ToString();
 
         GameObject newInstantiateVida = Instantiate(targetVida, transform.position, transform.rotation);
-
         newInstantiateVida.transform.SetParent(rectTransform.GetComponent<Transform>());
         newInstantiateVida.transform.localScale = new Vector2(1, 1);
+        textMeshVida = newInstantiateVida.GetComponent<TextMeshProUGUI>();
+        CurrentVida = vida;
+        textMeshVida.text = CurrentVida.ToString();
     }
 
     private void Awake()
@@ -105,12 +116,27 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
         {
             GetComponent<RectTransform>().anchoredPosition = item.GetComponent<RectTransform>().anchoredPosition;
 
-            itemSlot.itemOnSlot = null;
+            if (itemSlot != null)
+            {
+                itemSlot.itemOnSlot = null;
+            }
             itemSlot = item;
             itemSlot.itemOnSlot = this;
 
             onSlot = true;
             status = goTo;
         }
+    }
+
+    public void atualizarVida(int dano)
+    {
+        CurrentVida -= dano;
+        textMeshVida.text = CurrentVida.ToString();
+    }
+
+    public void resetarVida()
+    {
+        CurrentVida = vida;
+        textMeshVida.text = CurrentVida.ToString();
     }
 }

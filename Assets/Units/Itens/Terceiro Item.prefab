@@ -10,12 +10,20 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5932027167573877130, guid: d0440503b39443e48b9519d8e45e5217, type: 3}
       propertyPath: m_Name
-      value: Item (2) Variant
+      value: Terceiro Item
+      objectReference: {fileID: 0}
+    - target: {fileID: 6738696141356145994, guid: d0440503b39443e48b9519d8e45e5217, type: 3}
+      propertyPath: vida
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6738696141356145994, guid: d0440503b39443e48b9519d8e45e5217, type: 3}
+      propertyPath: ataque
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6738696141356145994, guid: d0440503b39443e48b9519d8e45e5217, type: 3}
       propertyPath: canvas
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1573713206397908056, guid: 064cf46ba6b76eb4ea62b2e7db6553f7, type: 3}
     - target: {fileID: 7516394820961309210, guid: d0440503b39443e48b9519d8e45e5217, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -95,6 +103,14 @@ PrefabInstance:
     - target: {fileID: 7516394820961309210, guid: d0440503b39443e48b9519d8e45e5217, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9090683482580597099, guid: d0440503b39443e48b9519d8e45e5217, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9090683482580597099, guid: d0440503b39443e48b9519d8e45e5217, type: 3}
+      propertyPath: m_Color.r
+      value: 0.003921569
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
